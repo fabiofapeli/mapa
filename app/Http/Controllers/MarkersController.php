@@ -18,6 +18,11 @@ class MarkersController extends Controller
         return view('markers.index', compact('markers'));
     }
     
+    public function select(){
+        $markers = $this->marker->all(['id', 'name']);
+        return $markers;
+    }
+    
     public function create() {
         return view('markers.create');
     }

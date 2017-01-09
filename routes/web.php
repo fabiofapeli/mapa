@@ -21,6 +21,14 @@ Route::group(['prefix'=>'app'],function(){
     Route::post('register','AppsController@register');
     Route::get('connected/{uuid}','AppsController@connected');
     Route::get('logout/{uuid}','AppsController@logout');
+    Route::get('markers','MarkersController@select');
+    
+    Route::group(['prefix'=>'troubles','middleware'=>['auth']],function(){
+       Route::get('','TroublesController@index');
+       Route::post('store','TroublesController@store');
+       Route::get('edit/{id}','TroublesController@edit');
+       Route::post('update', 'TroublesController@update');
+    });
     
 });
 
