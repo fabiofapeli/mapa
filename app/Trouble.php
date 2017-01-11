@@ -18,6 +18,10 @@ class Trouble extends Model
     public function marker(){
         return $this->belongsTo('App\Marker');
     }
+   
+    public function photo(){
+        return $this->hasMany('App\TroublePhoto');
+    }
     
     /**
      * Get coordinates by Google Maps API
@@ -28,7 +32,7 @@ class Trouble extends Model
         $coordinates = NULL;
         
         $address = str_replace(" ", "+", $address); // replace all the white space with "+" sign to match with google search pattern
- 
+        
         $url = "http://maps.google.com/maps/api/geocode/json?sensor=false&address=$address";
         
         $opts = array('http'=>array('header' => "User-Agent:MyAgent/1.0\r\n"));

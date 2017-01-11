@@ -16,8 +16,10 @@ class VerifyCsrfToken extends BaseVerifier
         'app/login',
         'app/register',
         'app/troubles',
+        'app/map',
         'app/troubles/store',
         'app/troubles/update',
+        'app/troubles/all',
         'app/troubles/edit'
     ];
 }

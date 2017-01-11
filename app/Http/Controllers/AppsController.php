@@ -82,7 +82,7 @@ class AppsController extends Controller
         }
         
         $response = ['status' => $message];
-        return Response::json($response); 
+        return \Response::json($response); 
     }
 
 }

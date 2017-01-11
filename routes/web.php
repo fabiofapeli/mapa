@@ -22,12 +22,21 @@ Route::group(['prefix'=>'app'],function(){
     Route::get('connected/{uuid}','AppsController@connected');
     Route::get('logout/{uuid}','AppsController@logout');
     Route::get('markers','MarkersController@select');
+    Route::get('map','TroublesController@map');
     
-    Route::group(['prefix'=>'troubles','middleware'=>['auth']],function(){
+    Route::group(['prefix'=>'troubles', 'middleware'=>'auth'],function(){
        Route::get('','TroublesController@index');
        Route::post('store','TroublesController@store');
-       Route::get('edit/{id}','TroublesController@edit');
+       Route::get('all','TroublesController@all');
+       Route::get('edit/{id}', 'TroublesController@edit');
        Route::post('update', 'TroublesController@update');
+       
+       Route::group(['prefix'=>'photos'],function(){
+           Route::get('{id}', 'TroublePhotosController@index');
+           Route::get('destroy/{id}', 'TroublePhotosController@destroy');
+           Route::get('total/{id}', 'TroublePhotosController@total');
+       });
+       
     });
     
 });

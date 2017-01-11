@@ -30,6 +30,31 @@ class TroublesController extends Controller
         return \Response::json($response); 
     }
     
+    public function map() {
+        $troubles = $this->trouble->all();
+        return view('troubles.map', compact('troubles'));
+    }
+    
+    public function all() {
+        $troubles = $this->trouble->all();
+        
+        $data = array();
+        foreach ($troubles as $trouble){
+            array_push($data, [
+                'id'       =>  $trouble->id,
+                'address'  =>  $trouble->address,
+                'number'   =>  $trouble->number,
+                'district' =>  $trouble->district,
+                'latitude' =>  $trouble->latitude,
+                'longitude'=>  $trouble->longitude,
+                'marker'   =>  $trouble->marker->name,
+                'description'   =>  $trouble->description
+            ]);
+        }
+        
+        return $data; 
+    }
+    
     public function edit($id) {
         $trouble = $this->trouble->find($id, ['address', 'number', 'district', 'marker_id', 'description']);
         return $trouble;
@@ -43,6 +68,7 @@ class TroublesController extends Controller
         if(is_null($coordinates)){
            $status = "error"; 
            $message = "Endereço não localizado";
+           $id = 0;
         }else{
                
             $user_id = \Auth::user()->id;
@@ -58,12 +84,13 @@ class TroublesController extends Controller
                     'marker_id'     => $request->marker_id 
                   ];
            
-           $this->trouble->create($data);
+           $trouble = $this->trouble->create($data);
            $status = "success" ;
            $message = "Cadastrado com sucesso";
+           $id = $trouble->id;
         }
         
-        $response = ['status' => $status, 'message' => $message];
+        $response = ['status' => $status, 'message' => $message, 'id' => $id];
         return \Response::json($response); 
     }
     
