@@ -50,7 +50,7 @@ return [
 
         'public_local' => [
             'driver' => 'local',
-            'root' => public_path('images\\troubles\\'),
+            'root' => public_path(''),
         ],
         
         'public' => [
