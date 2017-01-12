@@ -31,10 +31,11 @@ Route::group(['prefix'=>'app'],function(){
        Route::get('edit/{id}', 'TroublesController@edit');
        Route::post('update', 'TroublesController@update');
        
-       Route::group(['prefix'=>'photos'],function(){
+       Route::group(['prefix'=>'photos'],function(){ // Verificar necessidade de incluir middleware Auth
            Route::get('{id}', 'TroublePhotosController@index');
            Route::get('destroy/{id}', 'TroublePhotosController@destroy');
            Route::get('total/{id}', 'TroublePhotosController@total');
+           Route::post('upload', 'TroublePhotosController@upload');
        });
        
     });

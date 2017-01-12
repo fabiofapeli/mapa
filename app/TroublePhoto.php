@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class TroublePhoto extends Model
 {
     protected $fillable = [
-      'trouble_id' 
+      'trouble_id' ,
+        'extension'
     ];
     
     public function marker(){

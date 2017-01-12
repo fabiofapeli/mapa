@@ -39,4 +39,13 @@ class TroublePhotosController extends Controller
             return $response = ['status' => 'success'];
         }
     }
+    
+    public function upload(Request $request){        
+        $file = $request->file('file');
+        $extension = $file->getClientOriginalExtension();
+        $image = $this->troublephoto->create(['trouble_id' => $request->trouble_id, 'extension' => $extension]);
+        $image_path = "images\\troubles\\" . $image->id.'.'.$extension;
+        Storage::disk('public_local')->put($image_path,File::get($file)); 
+    }
+
 }
