@@ -15,8 +15,8 @@ class MarkersTableSeeder extends Seeder
         //DB::statement("SET foreign_key_checks = 0");
         //Marker::truncate();
         DB::statement("TRUNCATE TABLE markers CASCADE");
-        Marker::create(['name'=>'Buraco','image'=> 'N']);
-        Marker::create(['name'=>'Vazamento','image'=> 'N']);
-        Marker::create(['name'=>'Iluminação','image'=> 'N']);
+        Marker::create(['id'=>1, 'name'=>'Buraco','image'=> 'N']);
+        Marker::create(['id'=>2, 'name'=>'Vazamento','image'=> 'N']);
+        Marker::create(['id'=>3, 'name'=>'Iluminação','image'=> 'N']);
     }
 }
