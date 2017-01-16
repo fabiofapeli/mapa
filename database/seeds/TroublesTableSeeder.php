@@ -12,7 +12,7 @@ class TroublesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::statement("SET foreign_key_checks = 0");
+        //DB::statement("SET foreign_key_checks = 0");
         //Trouble::truncate();
         DB::statement("TRUNCATE TABLE troubles CASCADE");
         Trouble::create(['user_id'=> 1, 'address'=>'R. Castelo Branco',             'number'=> '253', 'district'=> 'Veredas', 'latitude'=> -15.624134, 'longitude'=> -46.426954, 'description'=> 'Lorem ipsum Cillum ea dolor.', 'marker_id'=> 1]);

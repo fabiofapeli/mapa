@@ -12,7 +12,7 @@ class MarkersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::statement("SET foreign_key_checks = 0");
+        //DB::statement("SET foreign_key_checks = 0");
         //Marker::truncate();
         DB::statement("TRUNCATE TABLE markers CASCADE");
         Marker::create(['name'=>'Buraco','image'=> 'N']);
