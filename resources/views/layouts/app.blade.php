@@ -36,6 +36,7 @@
                     </button>
                     
                     {{ link_to_route('markers.index', 'Marcadores', [], ['class' => 'navbar-brand']) }}
+                    {{ link_to_route('troubles.index', 'Indicações', [], ['class' => 'navbar-brand']) }}
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">

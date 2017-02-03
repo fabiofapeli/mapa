@@ -3,11 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/xampp/htdocs/mapa/app/Http/Controllers/MarkersController.php</file>
             <file>file:/C:/xampp/htdocs/mapa/routes/web.php</file>
             <file>file:/C:/xampp/htdocs/mapa/app/Http/Middleware/VerifyCsrfToken.php</file>
-            <file>file:/C:/xampp/htdocs/mapa/config/app.php</file>
-            <file>file:/C:/xampp/htdocs/mapa/config/database.php</file>
-            <file>file:/C:/xampp/htdocs/mapa/config/filesystems.php</file>
+            <file>file:/C:/xampp/htdocs/mapa/app/Http/Controllers/TroublesController.php</file>
+            <file>file:/C:/xampp/htdocs/mapa/app/Http/Controllers/TroublesAdmController.php</file>
+            <file>file:/C:/xampp/htdocs/mapa/resources/views/troubles/map.blade.php</file>
+            <file>file:/C:/xampp/htdocs/mapa/config/constants.php</file>
         </group>
     </open-files>
 </project-private>

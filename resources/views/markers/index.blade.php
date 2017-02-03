@@ -9,13 +9,15 @@
             <br /><br />
             <table class="table">
             <tr>
-                <th>Nome</th>
+                <th width="100%">Nome</th>
+                <th></th>
                 <th></th>
             </tr>
             @foreach($markers as $marker)
             <tr>
-                <td>{{link_to_route('markers.edit', $marker->name, $marker->id )}}</td>
-                <td align="right">{{link_to_route('markers.destroy', 'Excluir', $marker->id, ['class' => 'btn btn-danger'])}}</td>
+                <td>{{ $marker->name }}</td>
+                <td>{{link_to_route('markers.edit', 'Editar', $marker->id , ['class' => 'btn btn-primary'] )}}</td>
+                <td>{{link_to_route('markers.destroy', 'Excluir', $marker->id, ['class' => 'btn btn-danger'])}}</td>
             </tr>
             @endforeach
         </table>

@@ -22,7 +22,7 @@ Route::group(['prefix'=>'app'],function(){
     Route::get('connected/{uuid}','AppsController@connected');
     Route::get('logout/{uuid}','AppsController@logout');
     Route::get('markers','MarkersController@select');
-    Route::get('map','TroublesController@map');
+    Route::get('map/{status}','TroublesController@map');
     
     Route::group(['prefix'=>'troubles', 'middleware'=>'auth'],function(){
        Route::get('','TroublesController@index');
@@ -56,6 +56,14 @@ Route::group(['prefix'=>'admin','middleware'=>['auth.admin','auth'],'where'=>['i
          Route::put('update', ['as' => 'markers.update', 'uses' => 'MarkersController@update']);
          Route::get('destroy/{id}',['as' => 'markers.destroy', 'uses' => 'MarkersController@destroy']);
          Route::get('edit/{id}',['as' => 'markers.edit', 'uses' => 'MarkersController@edit']);
+         
+     });
+     
+      Route::group(['prefix'=>'troubles'],function (){
+         Route::get('',['as' => 'troubles.index', 'uses' => 'TroublesAdmController@index']);
+         Route::put('update', ['as' => 'troubles.update', 'uses' => 'TroublesAdmController@update']);
+         Route::get('destroy/{id}',['as' => 'troubles.destroy', 'uses' => 'TroublesAdmController@destroy']);
+         Route::get('edit/{id}',['as' => 'troubles.edit', 'uses' => 'TroublesAdmController@edit']);
          
      });
      

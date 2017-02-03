@@ -14,7 +14,10 @@
 <body  onload="initMap()" topmargin='0' leftmargin='0'>
 	<div id="map"></div>
         <script language ="javascript">
-            function initMap() {                
+            function initMap() {        
+     
+                status = '<?php echo $status;?>'
+     
                 altura = $('body')[0].scrollHeight; 
     
                 $("#map").height(altura);
@@ -26,6 +29,12 @@
                       scrollwheel: false,
                       zoom: 15
                     });
+                    
+                    var pinColor = (status == 'C')?"0000FF":"FE7569";
+                    var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+                    new google.maps.Size(21, 34),
+                    new google.maps.Point(0,0),
+                    new google.maps.Point(10, 34));
                     
                     @foreach($troubles as $trouble)
                     <?php
@@ -55,6 +64,7 @@
                     var marker_{{$trouble->id}} = new google.maps.Marker({
                       position: {lat: {{$trouble->latitude}}, lng: {{$trouble->longitude}}},
                       map: map,
+                      icon: pinImage,
                       title: '{{$trouble->marker->name}}'
                     });
                       

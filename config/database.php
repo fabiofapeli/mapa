@@ -26,7 +26,7 @@ return [
     |
     */
  
-    'default' => env('DB_CONNECTION', 'pgsql'),
+    'default' => env('DB_CONNECTION', 'mysql'),
  
     /*
     |--------------------------------------------------------------------------
@@ -54,11 +54,11 @@ return [
  
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 'localhost'),
+            'host' => env('DB_HOST', 'mysql.cyberway.com.br'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'database' => env('DB_DATABASE', 'cyberway22'),
+            'username' => env('DB_USERNAME', 'cyberway22'),
+            'password' => env('DB_PASSWORD', 'feat1278'),
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',

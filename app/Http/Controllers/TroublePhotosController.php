@@ -44,8 +44,9 @@ class TroublePhotosController extends Controller
         $file = $request->file('file');
         $extension = $file->getClientOriginalExtension();
         $image = $this->troublephoto->create(['trouble_id' => $request->trouble_id, 'extension' => $extension]);
-        $image_path = "images\\troubles\\" . $image->id.'.'.$extension;
-        Storage::disk('public_local')->put($image_path,File::get($file)); 
+        //"images\\troubles\\" . 
+        $image_name = $image->id.'.'.$extension;
+        Storage::disk('troubles')->put($image_name,File::get($file)); 
         echo $path = url($image_path);
     }
 

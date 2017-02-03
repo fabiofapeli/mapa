@@ -18,11 +18,13 @@ class TroublesController extends Controller
         $user_id = \Auth::user()->id;
         $troubles = $this->trouble->where('user_id', $user_id)->get();
         $data = array();
+        $status = config('constants.trouble.status');
         foreach ($troubles as $trouble){
             array_push($data, [
                 'id'      => $trouble->id,
                 'address' => $trouble->address,
-                'marker'  => $trouble->marker->name
+                'marker'  => $trouble->marker->name,
+                'status'  => $status[$trouble->status]
             ]);
         }
         
@@ -30,9 +32,15 @@ class TroublesController extends Controller
         return \Response::json($response); 
     }
     
-    public function map() {
-        $troubles = $this->trouble->all();
-        return view('troubles.map', compact('troubles'));
+    public function index_admin(){
+        $troubles = $this->trouble->paginate(20);
+        $status = config('constants.trouble.status');
+        return view('troubles.index', compact('troubles', 'status'));
+    }
+    
+    public function map($status) {
+        $troubles = $this->trouble->where(['status' => $status])->get();
+        return view('troubles.map', compact('troubles','status'));
     }
     
     public function all() {
