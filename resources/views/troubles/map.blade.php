@@ -10,6 +10,9 @@
         </style>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
   crossorigin="anonymous"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 </head>
 <body  onload="initMap()" topmargin='0' leftmargin='0'>
 	<div id="map"></div>
@@ -51,7 +54,7 @@
                                 $image_path= "/images/troubles/" . $photo->id . '.' . $photo->extension;
                                 $image_path = url('/') . $image_path;
                             ?>
-                            '<img src="{{$image_path}}">' + 
+                            '<a href="#" class="image_links" data-image="{{$image_path}}"><img src="{{$image_path}}" style="width:50px;height: auto" hspace="2"></a>' + 
                         @endforeach
                     '<p>{{$description}}</p>'+
                     '</div>'+
@@ -74,8 +77,26 @@
                       
                     @endforeach
             }
+            
+ $(function() {
+    var dialog = $( "#dialog" ).dialog();
+     //$('a.image_links').on('click', function(e){
+     $(document).on('click','a.image_links',function(){
+         //e.preventDefault();
+         //alert($(this).data('image'));
+         var image_src = $(this).data('image');
+         $('#image').attr("src", image_src);
+         $(dialog).dialog('open');
+     });
+
+     $(dialog).dialog('close');
+});
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChyWF1p5ssYnvLpggsn_XLk7D2dDCr4Ww&callback=initMap"
     async defer></script>
+
+<div id="dialog" >
+    <img src="" style="width:100%;height: auto"  id="image"></img>
+</div>
 </body>
 </html>

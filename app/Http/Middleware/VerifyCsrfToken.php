@@ -21,6 +21,7 @@ class VerifyCsrfToken extends BaseVerifier
         'app/troubles/update',
         'app/troubles/all',
         'app/troubles/edit',
-        'app/troubles/photos/upload'
+        'app/troubles/photos/upload',
+        'app/user/filter'
     ];
 }

@@ -22,7 +22,14 @@ Route::group(['prefix'=>'app'],function(){
     Route::get('connected/{uuid}','AppsController@connected');
     Route::get('logout/{uuid}','AppsController@logout');
     Route::get('markers','MarkersController@select');
-    Route::get('map/{status}','TroublesController@map');
+    Route::get('map/{status}/{uuid}','TroublesController@map');
+    
+    //
+    Route::group(['prefix'=>'user', 'middleware'=>'auth'],function(){
+       Route::get('markers','UsersController@index'); 
+       Route::post('filter','UsersController@filter'); 
+    });
+    
     
     Route::group(['prefix'=>'troubles', 'middleware'=>'auth'],function(){
        Route::get('','TroublesController@index');

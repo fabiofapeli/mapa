@@ -4,14 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Trouble;
+use App\UserMarker;
+use App\App;
 
 class TroublesController extends Controller
 {
     private $trouble;
     private $user_id;
+    private $user_marker;
+    private $app;
     
-    public function __construct(Trouble $trouble) {
+    public function __construct(Trouble $trouble, UserMarker $user_marker, App $app) {
         $this->trouble = $trouble;
+        $this->user_marker = $user_marker;
+        $this->app = $app;
     }
     
     public function index() {
@@ -38,9 +44,16 @@ class TroublesController extends Controller
         return view('troubles.index', compact('troubles', 'status'));
     }
     
-    public function map($status) {
-        $troubles = $this->trouble->where(['status' => $status])->get();
-        return view('troubles.map', compact('troubles','status'));
+    public function map($status, $uuid) {  
+       $app = $this->app->where('uuid', $uuid)->get(['user_id'])->toArray();
+       $user_id = $app[0]['user_id'];
+
+       $markers = $this->user_marker->where('user_id', $user_id)->get(['marker_id'])->toArray();
+       
+       //$troubles  = $this->trouble->where(['status' => $status])->whereIn(['marker_id', [1, 2]])->get();  
+        $troubles = \App\Trouble::where(['status' => $status])->whereNotIn('marker_id', $markers)->get();
+       return view('troubles.map', compact('troubles','status'));
+       
     }
     
     public function all() {
